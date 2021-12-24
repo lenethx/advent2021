@@ -1,0 +1,18 @@
+fdb bgfa cedfg abedcf defgba gbaed dagfbce fbged dgabce fb 
+1=2 digits
+7=3 digits
+step1: separate the ones with 2 and 3 digits. The digit that the 3 one has and the 2 one doesnt is a
+a=step1
+step2: isolate the 3 elements that are missing one of the digits in 1. the one of those two digits that is only missing once corresponds to the 2
+2=step2 
+f=step2
+c=step2
+step3: of the remaining 2, the one with fewer digits is 5 and the other 6
+5
+6
+e=the one besides c that 5 is missing
+b=the one besides f that 2 is missing
+8= the one wth all digits
+4 the one with 4 digits
+3=the one missing only b and e
+9=the only one left
