@@ -16,7 +16,6 @@ def testnumber(number):
     for item in instructions:
         item1=locals()[item[1]]
         item2=locals()[item[2]] if isinstance(item[2],str) else item[2]
-        print(item[1],locals(),locals()[item[1]])
         #print(item2)
         if item[0]=='inp':
             print(item1,item2)
