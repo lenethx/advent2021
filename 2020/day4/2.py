@@ -4,7 +4,7 @@ with open("../debug.py") as file:
 with open("input.txt") as file:
     #lines=file.readlines()
     validuwu=0
-    fields=set()
+    fields={}
     reqfields={"byr", "iyr", "eyr","hgt","hcl","ecl","pid"}
     fieldconditions={
             "byr": lambda x: 1920 <= int(x) <= 2002,
@@ -14,21 +14,27 @@ with open("input.txt") as file:
             "hcl": lambda x: bool(re.match("#[a-f0-9]{6,6}",x)) and len(x)==7,
             "ecl": lambda x: x in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"],
             "pid": lambda x: x.isdigit() and len(x)==9,
-            "cid": lambda x: true
+            "cid": lambda x: True
             }
 
     while a:=file.readline():
         if a =="\n":
-            if fields.intersection(reqfields) == reqfields:
-                validuwu+=1    
+            if all( x in fields for x in reqfields ):
+                anyinvalid=0
+                for field in fields:
+                    if not fieldconditions[field](fields[field]):
+                        anyinvalid+=1
+                if not anyinvalid:
+                    validuwu+=1
+                
                 print(bcolors.OKGREEN,fields, 1)
             else:
                 print(bcolors.WARNING,fields)
-            fields=set()
+            fields={}
         else:
-            linefields=list(map(lambda x: x.split(":")[0], a[:-1].split(" ")))
+            linefields=list(map(lambda x: x.split(":"), a[:-1].split(" ")))
             for lf in linefields:
-                fields.add(lf)
+                fields[lf[0]]=lf[1]
 print(validuwu)
 
 
