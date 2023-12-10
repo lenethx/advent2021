@@ -1,0 +1,30 @@
+use std::io::{self, BufReader};
+use std::io::prelude::*;
+use std::fs::File;
+use std::collections::HashMap;
+
+fn main() -> std::io::Result<()>{
+    let f = File::open("input.txt")?;
+    let f = BufReader::new(f);
+
+    let mut sumscore = 0;
+    let possiblescores = HashMap::from([
+        ("A X", 4),
+        ("A Y", 8),
+        ("A Z", 3),
+        ("B X", 1),
+        ("B Y", 5),
+        ("B Z", 9),
+        ("C X", 7),
+        ("C Y", 2),
+        ("C Z", 6)
+
+        ]);
+ 
+    for line in f.lines() {
+        sumscore += possiblescores.get(&line.unwrap() as &str).unwrap(); 
+    }
+    
+    println!("{:?}", sumscore);
+    Ok(())
+}

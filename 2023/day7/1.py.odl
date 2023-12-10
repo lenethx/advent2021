@@ -1,0 +1,51 @@
+def gettype(hand):
+    cards=dict()
+    for letter in hand:
+        if letter in dict:
+            cards[letter]+=1
+        else:
+            cards[letter]=1
+
+    cardcounts = cards.values()
+    cardcounts.sort(reverse=True)
+    match cardcounts:
+        case [5]:
+            return 7
+        case [4, 1]:
+            return 6
+        case [3,2]:
+            return 5
+        case [3,1,1]:
+            return 4
+        case [2,2,1]
+            return 3
+        case [2,1,1,1]:
+            return 2
+        case [1,1,1,1,1]:
+            return 1
+
+def handisgreater(hand1, hand2):
+    cardvalues = "23456789TJQKA"
+    type1 = gettype(hand1)
+    type2 = gettype(hand2)
+
+    if type1>type2:
+        return True
+    elif type2>type1:
+        return False
+
+    for card1, card2 in zip(hand1.split(), hand2.split()):
+        card1value = cardvalues.find(card1)
+        card2value = cardvalues.find(card2)
+        if card1value >card2value:
+            return True
+        elif card2value>card1value:
+            return False
+
+
+with open("input.txt") as file:
+    data = [x[:-1] for x in file.readlines()]
+
+hands2bids = [{(z:=x.split(" "))[0],z[1]  for x in data]
+
+hands2bids.sort()
